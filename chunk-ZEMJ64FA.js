@@ -1,0 +1,1 @@
+import{n as e}from"./chunk-T7E4WGJV.js";var o=class t{getFieldError(r){return r?.errors?r?.errors?.required?"Campo Obligatorio":r?.errors?.minlength?"Minimo 6 caracteres":null:null}static \u0275fac=function(i){return new(i||t)};static \u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})};export{o as a};
