@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './topbar.css',
 })
 export class Topbar {
-  public  authService = inject(AuthService)
+  public authService = inject(AuthService)
   private router = inject(Router);
 
 

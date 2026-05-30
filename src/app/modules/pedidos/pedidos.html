@@ -14,7 +14,7 @@
         <header class="card__head">
           <h2 class="h2">Órdenes</h2>
           <div class="muted">
-            {{ totalCount() }} pedidos · Página {{ currentPage() }} de {{ totalPages() }}
+            {{ pagination.totalCount() }} pedidos · Página {{ pagination.currentPage() }} de {{ pagination.totalPages() }}
           </div>
         </header>
   
@@ -85,7 +85,7 @@
               class="btn btn--ghost btn--sm"
               type="button"
               (click)="goToPreviousPage()"
-              [disabled]="!hasPrevious()"
+              [disabled]="!pagination.hasPrevious()"
             >
               Anterior
             </button>
@@ -93,7 +93,7 @@
               class="btn btn--ghost btn--sm"
               type="button"
               (click)="goToNextPage()"
-              [disabled]="!hasNext()"
+              [disabled]="!pagination.hasNext()"
             >
               Siguiente
             </button>

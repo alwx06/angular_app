@@ -41,12 +41,9 @@ public login(): void{
     formValues.password
   ).subscribe((response:AuthResponse)=>{
     if (response.access) {
-      this.router.navigate(['/productos'])
+      this.router.navigate(['/tienda'])
     }
   })
-
-
-  
 }
 
 public isFieldInvalid(field: string): boolean{

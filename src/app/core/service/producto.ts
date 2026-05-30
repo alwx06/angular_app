@@ -8,7 +8,7 @@ import { environment } from '@environments/environment'
   providedIn: 'root',
 })
 export class ProductoService {
-  private apiUrl = `${environment.apiUrl}/api/shoppingcart/public-products/`;
+  private apiUrl = `${environment.apiUrl}/api/shoppingcart/products/`;
 
   private http = inject(HttpClient)
 
