@@ -102,4 +102,29 @@
       </article>
     </section>
   </main>
+
+  <dialog #confirmDeleteDialog class="modal modal--confirm" (click)="onConfirmDeleteBackdrop($event)">
+    <div class="modal__surface card" (click)="$event.stopPropagation()">
+      <header class="card__head modal__head">
+        <h2 class="h2">Eliminar producto</h2>
+      </header>
+  
+      <div class="modal__body">
+        <p>
+          ¿Seguro que deseas cancelar tu pedido
+          <strong>{{ pendingDeleteName() }}</strong>?
+        </p>
+        <p class="muted">Esta acción no se puede deshacer.</p>
+      </div>
+  
+      <footer class="modal__foot">
+        <button class="btn btn--ghost" type="button" (click)="closeConfirmDeleteModal()">
+          Cancelar
+        </button>
+        <button class="btn btn--danger" type="button" (click)="confirmCancel()">
+          Sí, cancelar
+        </button>
+      </footer>
+    </div>
+  </dialog>
   

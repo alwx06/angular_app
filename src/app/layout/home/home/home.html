@@ -1,0 +1,51 @@
+<div class="home page--center">
+    <div class="container">
+
+        <div class="home__hero">
+            <div class="brand__logo home__logo" aria-hidden="true">CH</div>
+            <h1 class="home__title">Bienvenido a Carrito</h1>
+        </div>
+
+        <div class="home__cards">
+            <a routerLink="/tienda" class="home__card card">
+                <div>
+                    <div class="home__card-title">Visita la tienda</div>
+                    <div class="home__card-desc">Y explora los productos disponibles</div>
+                </div>
+            </a>
+
+            @if (authService.isLoggedIn()) {
+            <a routerLink="/carrito" class="home__card card">
+                <div>
+                    <div class="home__card-title">Mi carrito</div>
+                    <div class="home__card-desc">Revisa los productos que agregaste</div>
+                </div>
+            </a>
+
+            <a routerLink="/mis-pedidos" class="home__card card">
+                <div>
+                    <div class="home__card-title">Mis pedidos</div>
+                    <div class="home__card-desc">Consulta el estado de tus órdenes</div>
+                </div>
+            </a>
+
+            @if (authService.isAdmin()) {
+            <a routerLink="/productos" class="home__card home__card--admin card">
+                <div>
+                    <div class="home__card-title">Administrar productos</div>
+                    <div class="home__card-desc">Gestiona el catálogo de la tienda</div>
+                </div>
+            </a>
+            }
+            } @else {
+            <a routerLink="/login" class="home__card card">
+                <div>
+                    <div class="home__card-title">Inicia sesión</div>
+                    <div class="home__card-desc">Accede para hacer tus compras</div>
+                </div>
+            </a>
+            }
+        </div>
+
+    </div>
+</div>

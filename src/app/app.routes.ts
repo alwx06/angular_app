@@ -9,6 +9,17 @@ import { guestGuard } from '@core/guards/guest-guard';
 
 export const routes: Routes = [
     {
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full' 
+    },
+
+    {
+        path: 'home',
+        loadComponent: () => import('./layout/home/home/home').then(m => m.Home),
+    },
+    
+    {
         path:"login",
         loadComponent: () => import ('./modules/auth/auth').then(m=> m.Auth),
         canActivate:[guestGuard]

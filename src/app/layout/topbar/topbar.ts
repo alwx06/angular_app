@@ -16,7 +16,7 @@ export class Topbar {
 
   public logout(): void {
     this.authService.logout();
-    this.router.navigate(['/tienda']);
+    this.router.navigate(['/home']);
   }
 
 }
