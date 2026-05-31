@@ -13,6 +13,7 @@
       <article class="card">
         <header class="card__head">
           <h2 class="h2">Listado</h2>
+          <input class="input search-input" type="search" placeholder="Buscar producto..." (input)="onSearch($event.target.value)" />
           <div class="muted">{{ pagination.totalCount() }} productos</div>
         </header>
   

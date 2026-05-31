@@ -26,6 +26,8 @@ export class Tienda implements OnInit {
   private readonly router = inject(Router);
   private readonly cartService = inject(CartService);
   protected readonly pagination = new Pagination(5); // para la paginación
+  protected readonly searchParam = signal<string>('');
+  private searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
   protected addToCart(product: ProductInterface): void {
     this.cartService.getCurrentCart().subscribe((cart) => {
@@ -46,9 +48,21 @@ export class Tienda implements OnInit {
     if (page !== null) this.loadProducts(page);
   }
 
+  protected onSearch(value: string): void {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+
+    this.searchTimeout = setTimeout(() => {
+      this.searchParam.set(value.trim());
+      this.pagination.resetPage();
+      this.loadProducts(1);
+    }, 300);
+  }
+
   private loadProducts(page: number): void {
     this.productoService
-      .getAllProducts(page, this.pagination.pageSize)
+      .getAllProducts(page, this.pagination.pageSize, this.searchParam())
       .subscribe((response: ApiResponse) => {
         this.products.set(response.results ?? []);
         this.pagination.updatePage(response, page);

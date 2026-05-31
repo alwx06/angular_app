@@ -41,7 +41,7 @@ public login(): void{
     formValues.password
   ).subscribe((response:AuthResponse)=>{
     if (response.access) {
-      this.router.navigate(['/tienda'])
+      this.router.navigate(['/home'])
     }
   })
 }

@@ -37,7 +37,6 @@ export class Pagination {
     return this.currentPage();
   }
 
-  /** Resetea a la primera página */
   resetPage(): void {
     this.currentPage.set(1);
   }

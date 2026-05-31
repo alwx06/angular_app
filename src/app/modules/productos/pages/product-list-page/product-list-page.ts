@@ -1,14 +1,19 @@
-import { Component, OnInit, inject, signal,computed, viewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, inject, signal, computed, viewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductTable } from '@modules/productos/components/product-table/product-table'
+import { ProductTable } from '@modules/productos/components/product-table/product-table';
 
-import   { ProductoService } from '@core/service/producto'
-import { ApiResponse, ProductInterface, ProductRequest, ProductUpdate } from '@modules/productos/models/product.models'
-import { ReactiveFormsModule, FormBuilder, Validators  } from '@angular/forms'
+import { ProductoService } from '@core/service/producto';
+import {
+  ApiResponse,
+  ProductInterface,
+  ProductRequest,
+  ProductUpdate,
+} from '@modules/productos/models/product.models';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { FormErrorService } from '@shared/services/form-error';
-import { CategoryInterface } from '@modules/productos/models/category.models'
-import { CategoryService } from '@core/service/category'
-import { ToastService }from '@shared/services/toast';
+import { CategoryInterface } from '@modules/productos/models/category.models';
+import { CategoryService } from '@core/service/category';
+import { ToastService } from '@shared/services/toast';
 import { Pagination } from '@shared/utilities/pagination';
 
 @Component({
@@ -35,9 +40,12 @@ export class ProductListPage implements OnInit {
   public categories = signal<CategoryInterface[]>([]);
   public readonly products = signal<ProductInterface[]>([]);
   private readonly dialogRef = viewChild.required<ElementRef<HTMLDialogElement>>('ProductDialog');
-  private readonly confirmDeleteDialogRef = viewChild.required<ElementRef<HTMLDialogElement>>('confirmDeleteDialog');
+  private readonly confirmDeleteDialogRef =
+    viewChild.required<ElementRef<HTMLDialogElement>>('confirmDeleteDialog');
   protected readonly pendingDeleteId = signal<number | null>(null);
   protected readonly pagination = new Pagination(5);
+  protected readonly searchParam = signal<string>('');
+  private searchTimeout: ReturnType<typeof setTimeout> | null = null;
 
   public productForm = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -114,11 +122,13 @@ export class ProductListPage implements OnInit {
   }
 
   private getAllProduct(page = this.pagination.currentPage()): void {
-    this.productService.getAllProducts(page, this.pagination.pageSize).subscribe((data: ApiResponse) => {
-      console.log(data.results);
-      this.products.set(data.results ?? []);
-      this.pagination.updatePage(data, page);
-    });
+    this.productService
+      .getAllProducts(page, this.pagination.pageSize, this.searchParam())
+      .subscribe((data: ApiResponse) => {
+        console.log(data.results);
+        this.products.set(data.results ?? []);
+        this.pagination.updatePage(data, page);
+      });
   }
 
   public ngOnInit(): void {
@@ -192,5 +202,17 @@ export class ProductListPage implements OnInit {
         this.closeModal();
       });
     }
+  }
+
+  public onSearch(value: string): void {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+
+    this.searchTimeout = setTimeout(() => {
+      this.searchParam.set(value.trim());
+      this.pagination.resetPage();
+      this.getAllProduct(1);
+    }, 300);
   }
 }

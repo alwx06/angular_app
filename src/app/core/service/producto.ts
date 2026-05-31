@@ -12,11 +12,15 @@ export class ProductoService {
 
   private http = inject(HttpClient)
 
-  public getAllProducts(page=1, pageSize=10): Observable<ApiResponse> {
+  public getAllProducts(page=1, pageSize=10, search=''): Observable<ApiResponse> {
 
-    const params = new HttpParams()
+    let params = new HttpParams()
     .set('page', String(page))
     .set('page_size', String(pageSize))
+
+    if(search) {
+      params = params.set('search', search)
+    }
 
 
     return this.http.get<ApiResponse>(this.apiUrl, {params})

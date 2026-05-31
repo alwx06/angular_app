@@ -405,3 +405,14 @@ textarea.input{
 
   .table{ min-width: 640px; }
 }
+
+.search-input {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 520px) {
+  .search-input {
+    width: 100%;
+  }
+}

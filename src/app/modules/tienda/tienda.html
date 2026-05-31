@@ -5,11 +5,6 @@
         <p class="muted">Catálogo de productos</p>
       </div>
       <div class="page__meta">
-        <!-- @if (isLoggedIn()) {
-          <a class="btn btn--primary" routerLink="/carrito">Ver carrito</a>
-        } @else {
-          <a class="btn btn--ghost" routerLink="/login">Iniciar sesión para comprar</a>
-        } -->
       </div>
     </section>
   
@@ -17,6 +12,7 @@
       <article class="card">
         <header class="card__head">
           <h2 class="h2">Productos</h2>
+          <input class="input search-input" type="search" placeholder="Buscar producto..." (input)="onSearch($event.target.value)" />
           <div class="muted">
             {{ pagination.totalCount() }} productos · Página {{ pagination.currentPage() }} de {{ pagination.totalPages() }}
           </div>
