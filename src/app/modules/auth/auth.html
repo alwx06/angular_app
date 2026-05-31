@@ -2,7 +2,7 @@
     <section class="page__head page__head--narrow">
       <div>
         <h1 class="h1">Iniciar sesión</h1>
-        <p class="muted">Accede para poder cargar productos.</p>
+        <p class="muted">Accede para poder comprar productos.</p>
         @if(message()){
           <div class="alert">
             {{message()}}
@@ -16,7 +16,7 @@
         <article class="card">
             <header class="card__head">
               <h2 class="h2">Login</h2>
-              <div class="muted">Solo cuentas pueden cargar productos</div>
+              <div class="muted">Solo cuentas pueden comprar productos</div>
             </header>
           
             <form class="form" autocomplete="on" [formGroup]="loginForm" (ngSubmit)="login()">

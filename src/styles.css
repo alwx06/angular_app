@@ -1,11 +1,11 @@
 :root{
-  --bg: #f6f7f9;
-  --surface: #ffffff;
+  --bg: #d2dff8;
+  --surface: #eeedfd;
   --text: #111827;
-  --muted: #6b7280;
+  --muted: #7b8495;
   --border: #e5e7eb;
-  --primary: #2563eb;
-  --primary-600: #1d4ed8;
+  --primary: #4b72c8;
+  --primary-600: #113391;
   --danger: #b91c1c;
   --warn-bg: #fffbeb;
   --warn-border: #f59e0b;
@@ -69,6 +69,7 @@ body{
 }
 .modal--confirm .modal__surface{
   width: min(400px, calc(100vw - 32px));
+  text-align: center;
 }
 .modal__head{
   flex-shrink: 0;
@@ -157,6 +158,7 @@ body{
   max-width: min(var(--content-narrow), 100%);
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 .page__head--wide{
   max-width: min(var(--content-wide), 100%);
@@ -218,6 +220,8 @@ body{
   text-transform: uppercase;
   letter-spacing: .04em;
   background: #fafafa;
+  background: #dde6f7;
+  color: #35383b;
 }
 .col-num{ text-align: right; white-space: nowrap; }
 /* Ancho mínimo para 1–2 botones pequeños sin forzar apilado raro */
@@ -268,16 +272,17 @@ body{
   border-radius: 12px;
   border: 1px solid var(--border);
   background: #ffffff;
+  border: 1px solid #a5b4fc; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); 
   color: var(--text);
   outline: none;
 }
 .input:focus{
-  border-color: #93c5fd;
+  border-color: #6ba8ee;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 .input:disabled{
   background: #f9fafb;
-  color: #9ca3af;
 }
 textarea.input{
   height: auto;
