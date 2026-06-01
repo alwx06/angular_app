@@ -3,12 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductTable } from '@modules/productos/components/product-table/product-table';
 
 import { ProductoService } from '@core/service/producto';
-import {
-  ApiResponse,
-  ProductInterface,
-  ProductRequest,
-  ProductUpdate,
-} from '@modules/productos/models/product.models';
+import { ApiResponse, ProductInterface, ProductRequest, ProductUpdate, } from '@modules/productos/models/product.models';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { FormErrorService } from '@shared/services/form-error';
 import { CategoryInterface } from '@modules/productos/models/category.models';
@@ -53,6 +48,7 @@ export class ProductListPage implements OnInit {
     price: [0, [Validators.required, Validators.minLength(0.01)]],
     stock: [0, [Validators.required, Validators.minLength(0)]],
     category: [0, [Validators.required, Validators.minLength(1)]],
+    image_url: ['', []]
   });
 
   protected readonly pendingDeleteName = computed(() => {
@@ -75,6 +71,7 @@ export class ProductListPage implements OnInit {
       price: Number(product.price),
       stock: product.stock,
       category: product.category,
+      image_url: product.image_url,
     });
 
     this.openCreateModal(true);
