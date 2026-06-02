@@ -16,7 +16,7 @@ export class FormErrorService {
     }
 
     if(control?.errors?.['minlength']){
-      return 'Minimo 6 caracteres'
+      return 'Minimo 8 caracteres'
     }
 
     return null

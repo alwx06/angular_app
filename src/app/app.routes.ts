@@ -16,12 +16,18 @@ export const routes: Routes = [
 
     {
         path: 'home',
-        loadComponent: () => import('./layout/home/home/home').then(m => m.Home),
+        loadComponent: () => import('./layout/home/home/home').then(m => m.Home)
     },
     
     {
         path:"login",
         loadComponent: () => import ('./modules/auth/auth').then(m=> m.Auth),
+        canActivate:[guestGuard]
+    },
+
+    {
+        path: 'registro',
+        loadComponent: () => import('./modules/registro/registro').then(m=>m.Registro),
         canActivate:[guestGuard]
     },
 

@@ -33,21 +33,20 @@
               <div class="field">
                 <label class="label" for="pass">Contraseña</label>
                 <input id="pass" class="input" type="password" formControlName="password" placeholder="••••••••" />
-
                 @if(isFieldInvalid('password')){
                   <p class="error"> {{getFieldError('password')}} </p>
                 }
               </div>
               <div class="form__row">
                 <label class="check">
-                  <input type="checkbox" />
+                  <input type="checkbox" formControlName="remember"/>
                   <span>Recordarme</span>
                 </label>
                 <a class="link" href="#" (click)="$event.preventDefault()">¿Olvidaste tu contraseña?</a>
               </div>
               <div class="form__actions">
-                <button class="btn btn--primary" type="submit" >Entrar</button>
-                <button class="btn btn--ghost" type="button">Crear cuenta</button>
+                <button class="btn btn--primary" type="submit">Entrar</button>
+                <a><button class="btn btn--primary" type="button" routerLink="/registro">Crear cuenta</button></a>
               </div>
             </form>
           </article>

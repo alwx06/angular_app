@@ -13,3 +13,12 @@ export interface AuthUser {
     access: string;
     user: AuthUser;
   }
+
+  export interface RegistroUser {
+  username: string,
+  email: string,
+  password: string,
+  password_confirm: string,
+  first_name: string,
+  last_name: string
+}
